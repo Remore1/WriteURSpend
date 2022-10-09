@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WriteUrSpendModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CurrentBalance">
+    <Key>
+      <PropertyRef Name="IdBalance" />
+    </Key>
+    <Property Name="IdBalance" Type="Int32" Nullable="false" />
+    <Property Name="CurrentbalanceCash" Type="Single" />
+    <Property Name="CurrentBalanceCard" Type="Single" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="DescriptionCategory" />
+    </Key>
+    <Property Name="IdCategory" Type="String" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HistoryOperation" Relationship="WriteUrSpendModel.FK_HistoryOperation_Categories" FromRole="Categories" ToRole="HistoryOperation" />
+  </EntityType>
+  <EntityContainer Name="WriteUrSpendEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CurrentBalance" EntityType="Self.CurrentBalance" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" />
+    <EntitySet Name="HistoryOperation" EntityType="WriteUrSpendModel.HistoryOperation" />
+    <EntitySet Name="sysdiagrams" EntityType="WriteUrSpendModel.sysdiagrams" />
+    <AssociationSet Name="FK_HistoryOperation_Categories" Association="WriteUrSpendModel.FK_HistoryOperation_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="HistoryOperation" EntitySet="HistoryOperation" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HistoryOperation">
+    <Key>
+      <PropertyRef Name="idOperation" />
+    </Key>
+    <Property Name="idOperation" Type="Int32" Nullable="false" />
+    <Property Name="TypeOperation" Type="Boolean" />
+    <Property Name="SumOperation" Type="Single" />
+    <Property Name="DateOperation" Type="DateTime" Precision="3" />
+    <Property Name="Commentary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdCategory" Type="Int32" />
+    <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Categories" Relationship="WriteUrSpendModel.FK_HistoryOperation_Categories" FromRole="HistoryOperation" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_HistoryOperation_Categories">
+    <End Type="WriteUrSpendModel.Categories" Role="Categories" Multiplicity="1" />
+    <End Type="WriteUrSpendModel.HistoryOperation" Role="HistoryOperation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="IdCategory" />
+      </Principal>
+      <Dependent Role="HistoryOperation">
+        <PropertyRef Name="idOperation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,31 @@
+﻿<Window x:Class="WriteUrSpend.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WriteUrSpend"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="185,100,263,100">
+            <TextBlock Foreground="Red" MaxHeight="200" MaxWidth="200" Text="Ваши покупки сегодня: " Height="45" Width="140"  />
+            <TextBox x:Name="NameBuy" BorderBrush="Red" Text="ОПИШИТЕ ПОКУПКУ" Width="148"/>
+            <TextBox x:Name="D" Margin="5" Text="Category" BorderBrush="Red" Width="173"/>
+            <TextBox x:Name="TypePayment" Margin="5" Text="TypePayment" BorderBrush="Red" Width="173"/>
+            <TextBox x:Name="Sum" Margin="5" Text="Sum" BorderBrush="Red" Width="173"/>
+            
+            <Button Name="SaveOperation" Click="SaveOperation_Click" Content="Сохранить"></Button>
+        </StackPanel>
+        <StackPanel>
+            <TextBox x:Name="TypeOperation" Margin="5" Text="TypeOperation" BorderBrush="Red" Width="173"/>
+        </StackPanel>
+        <StackPanel Width="200" Height="250" Margin="542,92,58,92">
+            <TextBlock Text="Баланс карты"></TextBlock>
+            <TextBlock Text="наличные"></TextBlock>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="DATA"></TextBlock>
+        </StackPanel>
+
+    </Grid>
+</Window>

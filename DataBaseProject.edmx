@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище WriteUrSpendModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoriesBuy">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescriptionCategory" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CategoryIncome">
+          <Key>
+            <PropertyRef Name="idCategoryInc" />
+          </Key>
+          <Property Name="idCategoryInc" Type="int" Nullable="false" />
+          <Property Name="CategoryIncome" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescriptionCategory" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CurrentBalance">
+          <Key>
+            <PropertyRef Name="IdBalance" />
+          </Key>
+          <Property Name="IdBalance" Type="int" Nullable="false" />
+          <Property Name="CurrentbalanceCash" Type="real" />
+          <Property Name="CurrentBalanceCard" Type="real" />
+        </EntityType>
+        <EntityType Name="HistoryBuy">
+          <Key>
+            <PropertyRef Name="idOperation" />
+          </Key>
+          <Property Name="idOperation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SumBuy" Type="real" Nullable="false" />
+          <Property Name="NameCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateBuy" Type="datetime" Nullable="false" />
+          <Property Name="NameProduct" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsBuyMadeCard" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoryIncome">
+          <Key>
+            <PropertyRef Name="idIncome" />
+          </Key>
+          <Property Name="idIncome" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SumIncome" Type="real" />
+          <Property Name="CategoryIncome" Type="nvarchar" MaxLength="50" />
+          <Property Name="WhoGave" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="Хранилище WriteUrSpendModelContainer">
+          <EntitySet Name="CategoriesBuy" EntityType="Self.CategoriesBuy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryIncome" EntityType="Self.CategoryIncome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentBalance" EntityType="Self.CurrentBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryBuy" EntityType="Self.HistoryBuy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryIncome" EntityType="Self.HistoryIncome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WriteUrSpendModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WriteUrSpendEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CurrentBalance" EntityType="WriteUrSpendModel.CurrentBalance" />
+          <EntitySet Name="sysdiagrams" EntityType="WriteUrSpendModel.sysdiagrams" />
+          <EntitySet Name="CategoriesBuy" EntityType="WriteUrSpendModel.CategoriesBuy" />
+          <EntitySet Name="CategoryIncome" EntityType="WriteUrSpendModel.CategoryIncome" />
+          <EntitySet Name="HistoryBuy" EntityType="WriteUrSpendModel.HistoryBuy" />
+          <EntitySet Name="HistoryIncome" EntityType="WriteUrSpendModel.HistoryIncome" />
+        </EntityContainer>
+        <EntityType Name="CurrentBalance">
+          <Key>
+            <PropertyRef Name="IdBalance" />
+          </Key>
+          <Property Name="IdBalance" Type="Int32" Nullable="false" />
+          <Property Name="CurrentbalanceCash" Type="Single" />
+          <Property Name="CurrentBalanceCard" Type="Single" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CategoriesBuy">
+          <Key>
+            <PropertyRef Name="IdCategory" />
+          </Key>
+          <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CategoryIncome">
+          <Key>
+            <PropertyRef Name="idCategoryInc" />
+          </Key>
+          <Property Name="idCategoryInc" Type="Int32" Nullable="false" />
+          <Property Name="CategoryIncome1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HistoryBuy">
+          <Key>
+            <PropertyRef Name="idOperation" />
+          </Key>
+          <Property Name="idOperation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SumBuy" Type="Single" Nullable="false" />
+          <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateBuy" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NameProduct" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsBuyMadeCard" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoryIncome">
+          <Key>
+            <PropertyRef Name="idIncome" />
+          </Key>
+          <Property Name="idIncome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SumIncome" Type="Single" />
+          <Property Name="CategoryIncome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WhoGave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WriteUrSpendModelContainer" CdmEntityContainer="WriteUrSpendEntities">
+          <EntitySetMapping Name="CurrentBalance">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.CurrentBalance">
+              <MappingFragment StoreEntitySet="CurrentBalance">
+                <ScalarProperty Name="CurrentBalanceCard" ColumnName="CurrentBalanceCard" />
+                <ScalarProperty Name="CurrentbalanceCash" ColumnName="CurrentbalanceCash" />
+                <ScalarProperty Name="IdBalance" ColumnName="IdBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriesBuy">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.CategoriesBuy">
+              <MappingFragment StoreEntitySet="CategoriesBuy">
+                <ScalarProperty Name="DescriptionCategory" ColumnName="DescriptionCategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryIncome">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.CategoryIncome">
+              <MappingFragment StoreEntitySet="CategoryIncome">
+                <ScalarProperty Name="DescriptionCategory" ColumnName="DescriptionCategory" />
+                <ScalarProperty Name="CategoryIncome1" ColumnName="CategoryIncome" />
+                <ScalarProperty Name="idCategoryInc" ColumnName="idCategoryInc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryBuy">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.HistoryBuy">
+              <MappingFragment StoreEntitySet="HistoryBuy">
+                <ScalarProperty Name="IsBuyMadeCard" ColumnName="IsBuyMadeCard" />
+                <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="DateBuy" ColumnName="DateBuy" />
+                <ScalarProperty Name="NameCategory" ColumnName="NameCategory" />
+                <ScalarProperty Name="SumBuy" ColumnName="SumBuy" />
+                <ScalarProperty Name="idOperation" ColumnName="idOperation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryIncome">
+            <EntityTypeMapping TypeName="WriteUrSpendModel.HistoryIncome">
+              <MappingFragment StoreEntitySet="HistoryIncome">
+                <ScalarProperty Name="WhoGave" ColumnName="WhoGave" />
+                <ScalarProperty Name="CategoryIncome" ColumnName="CategoryIncome" />
+                <ScalarProperty Name="SumIncome" ColumnName="SumIncome" />
+                <ScalarProperty Name="idIncome" ColumnName="idIncome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
