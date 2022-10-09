@@ -29,8 +29,25 @@ namespace WriteUrSpend
         {
             using (WriteUrSpendEntities writeUrSpendEntities = new WriteUrSpendEntities())
             {
-               // HistoryOperation historyOperation = new HistoryOperation();
+                // HistoryOperation historyOperation = new HistoryOperation();
                 //historyOperation.SumOperation
+                try
+                {
+                    HistoryBuy historyBuy = new HistoryBuy();
+                    historyBuy.DateBuy = DateTime.Now;
+                    historyBuy.NameProduct = NameBuy.Text;
+                    historyBuy.IsBuyMadeCard = true;
+                    historyBuy.SumBuy = (float)Convert.ToDouble(Sum.Text);
+                    historyBuy.NameCategory = NameCategory.Text;
+                }
+                catch (Exception exc)
+                {
+
+                    MessageBox.Show(exc.Message);
+                }
+                
+
+
             }
         }
     }
