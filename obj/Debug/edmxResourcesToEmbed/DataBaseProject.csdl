@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WriteUrSpendModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WriteUrSpendEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CurrentBalance" EntityType="WriteUrSpendModel.CurrentBalance" />
+    <EntitySet Name="sysdiagrams" EntityType="WriteUrSpendModel.sysdiagrams" />
+    <EntitySet Name="CategoriesBuy" EntityType="WriteUrSpendModel.CategoriesBuy" />
+    <EntitySet Name="CategoryIncome" EntityType="WriteUrSpendModel.CategoryIncome" />
+    <EntitySet Name="HistoryBuy" EntityType="WriteUrSpendModel.HistoryBuy" />
+    <EntitySet Name="HistoryIncome" EntityType="WriteUrSpendModel.HistoryIncome" />
+  </EntityContainer>
   <EntityType Name="CurrentBalance">
     <Key>
       <PropertyRef Name="IdBalance" />
@@ -7,38 +15,6 @@
     <Property Name="IdBalance" Type="Int32" Nullable="false" />
     <Property Name="CurrentbalanceCash" Type="Single" />
     <Property Name="CurrentBalanceCard" Type="Single" />
-  </EntityType>
-  <EntityType Name="Categories">
-    <Key>
-      <PropertyRef Name="DescriptionCategory" />
-    </Key>
-    <Property Name="IdCategory" Type="String" Nullable="false" />
-    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="HistoryOperation" Relationship="WriteUrSpendModel.FK_HistoryOperation_Categories" FromRole="Categories" ToRole="HistoryOperation" />
-  </EntityType>
-  <EntityContainer Name="WriteUrSpendEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="CurrentBalance" EntityType="Self.CurrentBalance" />
-    <EntitySet Name="Categories" EntityType="Self.Categories" />
-    <EntitySet Name="HistoryOperation" EntityType="WriteUrSpendModel.HistoryOperation" />
-    <EntitySet Name="sysdiagrams" EntityType="WriteUrSpendModel.sysdiagrams" />
-    <AssociationSet Name="FK_HistoryOperation_Categories" Association="WriteUrSpendModel.FK_HistoryOperation_Categories">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="HistoryOperation" EntitySet="HistoryOperation" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="HistoryOperation">
-    <Key>
-      <PropertyRef Name="idOperation" />
-    </Key>
-    <Property Name="idOperation" Type="Int32" Nullable="false" />
-    <Property Name="TypeOperation" Type="Boolean" />
-    <Property Name="SumOperation" Type="Single" />
-    <Property Name="DateOperation" Type="DateTime" Precision="3" />
-    <Property Name="Commentary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IdCategory" Type="Int32" />
-    <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Categories" Relationship="WriteUrSpendModel.FK_HistoryOperation_Categories" FromRole="HistoryOperation" ToRole="Categories" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -50,16 +26,40 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK_HistoryOperation_Categories">
-    <End Type="WriteUrSpendModel.Categories" Role="Categories" Multiplicity="1" />
-    <End Type="WriteUrSpendModel.HistoryOperation" Role="HistoryOperation" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Categories">
-        <PropertyRef Name="IdCategory" />
-      </Principal>
-      <Dependent Role="HistoryOperation">
-        <PropertyRef Name="idOperation" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="CategoriesBuy">
+    <Key>
+      <PropertyRef Name="IdCategory" />
+    </Key>
+    <Property Name="IdCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CategoryIncome">
+    <Key>
+      <PropertyRef Name="idCategoryInc" />
+    </Key>
+    <Property Name="idCategoryInc" Type="Int32" Nullable="false" />
+    <Property Name="CategoryIncome1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HistoryBuy">
+    <Key>
+      <PropertyRef Name="idOperation" />
+    </Key>
+    <Property Name="idOperation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SumBuy" Type="Single" Nullable="false" />
+    <Property Name="NameCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateBuy" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NameProduct" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsBuyMadeCard" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistoryIncome">
+    <Key>
+      <PropertyRef Name="idIncome" />
+    </Key>
+    <Property Name="idIncome" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SumIncome" Type="Single" />
+    <Property Name="CategoryIncome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WhoGave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище WriteUrSpendModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Categories">
+  <EntityType Name="CategoriesBuy">
     <Key>
       <PropertyRef Name="IdCategory" />
     </Key>
-    <Property Name="IdCategory" Type="int" Nullable="false" />
-    <Property Name="Category" Type="nvarchar" MaxLength="50" />
-    <Property Name="DescriptionCategory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DescriptionCategory" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CategoryIncome">
+    <Key>
+      <PropertyRef Name="idCategoryInc" />
+    </Key>
+    <Property Name="idCategoryInc" Type="int" Nullable="false" />
+    <Property Name="CategoryIncome" Type="nvarchar" MaxLength="50" />
+    <Property Name="DescriptionCategory" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="CurrentBalance">
     <Key>
@@ -16,17 +24,25 @@
     <Property Name="CurrentbalanceCash" Type="real" />
     <Property Name="CurrentBalanceCard" Type="real" />
   </EntityType>
-  <EntityType Name="HistoryOperation">
+  <EntityType Name="HistoryBuy">
     <Key>
       <PropertyRef Name="idOperation" />
     </Key>
-    <Property Name="idOperation" Type="int" Nullable="false" />
-    <Property Name="TypeOperation" Type="bit" />
-    <Property Name="SumOperation" Type="real" />
-    <Property Name="IdCategory" Type="int" />
+    <Property Name="idOperation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SumBuy" Type="real" Nullable="false" />
     <Property Name="NameCategory" Type="nvarchar" MaxLength="50" />
-    <Property Name="DateOperation" Type="datetime" />
-    <Property Name="Commentary" Type="nvarchar(max)" />
+    <Property Name="DateBuy" Type="datetime" Nullable="false" />
+    <Property Name="NameProduct" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsBuyMadeCard" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistoryIncome">
+    <Key>
+      <PropertyRef Name="idIncome" />
+    </Key>
+    <Property Name="idIncome" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SumIncome" Type="real" />
+    <Property Name="CategoryIncome" Type="nvarchar" MaxLength="50" />
+    <Property Name="WhoGave" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -38,26 +54,12 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_HistoryOperation_Categories">
-    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-    <End Role="HistoryOperation" Type="Self.HistoryOperation" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Categories">
-        <PropertyRef Name="IdCategory" />
-      </Principal>
-      <Dependent Role="HistoryOperation">
-        <PropertyRef Name="idOperation" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Хранилище WriteUrSpendModelContainer">
-    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoriesBuy" EntityType="Self.CategoriesBuy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryIncome" EntityType="Self.CategoryIncome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CurrentBalance" EntityType="Self.CurrentBalance" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HistoryOperation" EntityType="Self.HistoryOperation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryBuy" EntityType="Self.HistoryBuy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistoryIncome" EntityType="Self.HistoryIncome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_HistoryOperation_Categories" Association="Self.FK_HistoryOperation_Categories">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="HistoryOperation" EntitySet="HistoryOperation" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>
