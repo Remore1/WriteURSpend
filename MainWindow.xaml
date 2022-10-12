@@ -10,8 +10,12 @@
         <StackPanel Margin="185,100,263,100">
             <TextBlock Foreground="Red" MaxHeight="200" MaxWidth="200" Text="Ваши покупки сегодня: " Height="45" Width="140"  />
             <TextBox x:Name="NameBuy" BorderBrush="Red" Text="ОПИШИТЕ ПОКУПКУ" Width="148"/>
-            <TextBox x:Name="NameCategory" Margin="5" Text="Category" BorderBrush="Red" Width="173"/>
-            <TextBox x:Name="TypePayment" Margin="5" Text="TypePayment" BorderBrush="Red" Width="173"/>
+            <ComboBox x:Name="NameCategory" Margin="5"  BorderBrush="Red" Width="172" Height="20">
+                <!--ItemsSource="{Binding Path=}"-->
+                
+            </ComboBox>
+            <ComboBox x:Name="TypePayment" Margin="5" Text="TypePayment" BorderBrush="Red" Width="173">
+            </ComboBox>
             <TextBox x:Name="Sum" Margin="5" Text="Sum" BorderBrush="Red" Width="173"/>
             
             <Button Name="SaveOperation" Click="SaveOperation_Click" Content="Сохранить"></Button>

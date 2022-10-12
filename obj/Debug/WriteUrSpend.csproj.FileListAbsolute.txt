@@ -20,3 +20,4 @@ C:\Users\klyuv\source\repos\WriteUrSpend\obj\Debug\WriteUrSpend.csproj.CopyCompl
 C:\Users\klyuv\source\repos\WriteUrSpend\obj\Debug\WriteUrSpend.exe
 C:\Users\klyuv\source\repos\WriteUrSpend\obj\Debug\WriteUrSpend.pdb
 C:\Users\klyuv\source\repos\WriteUrSpend\obj\Debug\WriteUrSpend_Content.g.cs
+C:\Users\klyuv\source\repos\WriteUrSpend\obj\Debug\GeneratedInternalTypeHelper.g.cs

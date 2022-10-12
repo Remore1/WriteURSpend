@@ -22,7 +22,18 @@ namespace WriteUrSpend
     {
         public MainWindow()
         {
+           
+           // var listCategory =
             InitializeComponent();
+            using (WriteUrSpendEntities writeUrSpendEntities = new WriteUrSpendEntities())
+            {
+                var listCategory = writeUrSpendEntities.CategoriesBuy.Select(c => c.Category).ToList();
+                NameCategory.ItemsSource = listCategory;
+                NameCategory.SelectedIndex = 0;
+            }
+            TypePayment.ItemsSource = new string[] {"Картой", "Наличные" };
+            TypePayment.SelectedIndex = 0;
+
         }
 
         private void SaveOperation_Click(object sender, RoutedEventArgs e)
@@ -38,8 +49,10 @@ namespace WriteUrSpend
                         NameProduct = NameBuy.Text,
                         IsBuyMadeCard = true,
                         SumBuy = (float)Convert.ToDouble(Sum.Text),
-                        NameCategory = NameCategory.Text
+                        NameCategory = NameCategory.SelectedItem.ToString()
                     };
+                    if (TypePayment.SelectedItem.ToString() == "Наличные") historyBuy.IsBuyMadeCard = false;
+
                     writeUrSpendEntities.HistoryBuy.Add(historyBuy);
                     writeUrSpendEntities.SaveChanges();
                     
