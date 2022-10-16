@@ -30,9 +30,27 @@ namespace WriteUrSpend
                 var listCategory = writeUrSpendEntities.CategoriesBuy.Select(c => c.Category).ToList();
                 NameCategory.ItemsSource = listCategory;
                 NameCategory.SelectedIndex = 0;
+                string balanceCard = writeUrSpendEntities.CurrentBalance.Select(c => c.CurrentBalanceCard).FirstOrDefault().ToString();
+                var result1 = balanceCard  == null || balanceCard=="" ? BalanceCard.Text = "Oшибка!": BalanceCard.Text = balanceCard; 
+                
+                string balanceCash = writeUrSpendEntities.CurrentBalance.Select(c => c.CurrentbalanceCash).FirstOrDefault().ToString();
+                var result2 = balanceCash== null ? BalanceCash.Text = "Oшибка!" : BalanceCash.Text = balanceCash;
+                BalanceCash.Text = writeUrSpendEntities.CurrentBalance.Select(c => c.CurrentbalanceCash).FirstOrDefault().ToString();
+                var GeneralBalance = writeUrSpendEntities.CurrentBalance.ToArray();
+                
+                //switch (result1)
+                //{
+                //    case "Ошибка!":
+                //        BalanceCash.Text =  
+                //    default:
+                //        break;
+                //}
+
+
             }
             TypePayment.ItemsSource = new string[] {"Картой", "Наличные" };
             TypePayment.SelectedIndex = 0;
+            
 
         }
 

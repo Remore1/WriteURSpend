@@ -20,15 +20,22 @@
             
             <Button Name="SaveOperation" Click="SaveOperation_Click" Content="Сохранить"></Button>
         </StackPanel>
-        <StackPanel Margin="0,392,589,0">
+        <StackPanel Margin="247,45,342,347">
             <TextBox x:Name="TypeOperation" Margin="5" Text="TypeOperation" BorderBrush="Red" Width="173"/>
         </StackPanel>
         <StackPanel Width="200" Height="250" Margin="542,92,58,92">
-            <TextBlock Text="Баланс карты"></TextBlock>
-            <TextBlock Text="наличные"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Баланс карты" Width="76"/>
+                <TextBlock Text="Баланс карты число" x:Name="BalanceCard" Width="116"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Баланс наличные" Width="105"/>
+                <TextBlock Text=" число" x:Name="BalanceCash"  Width="90"/>
+            </StackPanel>
+            
         </StackPanel>
         <StackPanel MaxWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
-            <TextBlock Text="DATA"></TextBlock>
+            <TextBlock Text="DATA"/>
         </StackPanel>
 
     </Grid>
