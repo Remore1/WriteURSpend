@@ -5,24 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WriteUrSpend"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <StackPanel Margin="185,100,263,100">
             <TextBlock Foreground="Red" MaxHeight="200" MaxWidth="200" Text="Ваши покупки сегодня: " Height="45" Width="140"  />
             <TextBox x:Name="NameBuy" BorderBrush="Red" Text="ОПИШИТЕ ПОКУПКУ" Width="148"/>
             <ComboBox x:Name="NameCategory" Margin="5"  BorderBrush="Red" Width="172" Height="20">
                 <!--ItemsSource="{Binding Path=}"-->
-                
+
             </ComboBox>
             <ComboBox x:Name="TypePayment" Margin="5" Text="TypePayment" BorderBrush="Red" Width="173">
             </ComboBox>
             <TextBox x:Name="Sum" Margin="5" Text="Sum" BorderBrush="Red" Width="173"/>
-            
+
             <Button Name="SaveOperation" Click="SaveOperation_Click" Content="Сохранить"></Button>
+            <Button Name="GotoIncomePage" Content="говно" Margin="5" Click="GotoIncomePage_Click"></Button>
         </StackPanel>
-        <StackPanel Margin="247,45,342,347">
-            <TextBox x:Name="TypeOperation" Margin="5" Text="TypeOperation" BorderBrush="Red" Width="173"/>
-        </StackPanel>
+        <StackPanel Margin="247,45,342,347"/>
         <StackPanel Width="200" Height="250" Margin="542,92,58,92">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Баланс карты" Width="76"/>
@@ -32,11 +31,15 @@
                 <TextBlock Text="Баланс наличные" Width="105"/>
                 <TextBlock Text=" число" x:Name="BalanceCash"  Width="90"/>
             </StackPanel>
-            
+
         </StackPanel>
         <StackPanel MaxWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75">
-            <TextBlock Text="DATA"/>
+            <TextBlock  Text="{Binding DateToday, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}"/>
         </StackPanel>
+        <DockPanel Width="180" HorizontalAlignment="Left" Height="300" >
+            <Frame x:Name="NavigationFrame"  NavigationUIVisibility="Hidden" HorizontalAlignment="Left"></Frame>
+        </DockPanel>
+
 
     </Grid>
 </Window>
